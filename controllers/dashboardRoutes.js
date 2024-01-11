@@ -63,7 +63,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     }
 
     const post = postData.get({ plain: true });
-    res.render("edit-post", { post, loggedIn: true });
+    res.render("editPost", { post, loggedIn: true });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -71,7 +71,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
 });
 
 router.get("/new", (req, res) => {
-  res.render("add-post");
+  res.render("addPost");
 });
 
 module.exports = router;

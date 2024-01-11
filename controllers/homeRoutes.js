@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
-    res.render("homepage", { posts, loggedIn: req.session.loggedIn });
+    res.render("../views/partials/homepage", { posts, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -38,8 +38,8 @@ router.get("/login", (req, res) => {
   }
 });
 
-router.get("/signup", (req, res) => {
-  res.render("signup");
+router.get("/signUp", (req, res) => {
+  res.render("signUp");
 });
 
 router.get("/post/:id", async (req, res) => {
@@ -72,7 +72,7 @@ router.get("/post/:id", async (req, res) => {
 
     const post = postData.get({ plain: true });
     console.log(post);
-    res.render("single-post", { post, loggedIn: req.session.loggedIn });
+    res.render("singlePost", { post, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
