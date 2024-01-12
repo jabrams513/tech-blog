@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
     const posts = postData.map((post) => post.get({ plain: true }));
     
     // Render the homepage view with the posts data
-    res.render("../views/partials/homepage", { posts, loggedIn: req.session.loggedIn });
+    res.render("homepage", { posts, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
