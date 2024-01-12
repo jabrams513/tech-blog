@@ -1,48 +1,130 @@
-const router = require('express').Router();
-const { Project } = require('../../models');
-const withAuth = require('../../utils/auth');
+// Importing required modules and dependencies
+const router = require("express").Router();
+const { Post, User, Comment } = require("../../models");
+const sequelize = require("../../config/connection");
+const withAuth = require("../../utils/auth");
 
-// Route to create a new project (requires authentication)
-router.post('/', withAuth, async (req, res) => {
-  try {
-    // Create a new project with user_id from the session
-    const newProject = await Project.create({
-      ...req.body,
-      user_id: req.session.user_id,
+// Route to get all posts
+router.get("/", (req, res) => {
+  Post.findAll({
+    attributes: ["id", "title", "content", "created_at"],
+    order: [["created_at", "DESC"]],
+    include: [
+      {
+        model: User,
+        attributes: ['username']
+      },
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
+      }
+    ]
+  })
+    .then((postData) => res.json(postData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
-
-    // Respond with the newly created project
-    res.status(200).json(newProject);
-  } catch (err) {
-    // Respond with a 400 status and the error if something goes wrong
-    res.status(400).json(err);
-  }
 });
 
-// Route to delete a project by ID (requires authentication and ownership)
-router.delete('/:id', withAuth, async (req, res) => {
-  try {
-    // Destroy the project with the specified ID and user_id from the session
-    const projectData = await Project.destroy({
+// Route to get post by ID
+router.get("/:id", (req, res) => {
+  Post.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "content", "title", "created_at"],
+    include: [
+      {
+        model: User,
+        attributes: ['username']
+      },
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
+      }
+    ]
+  })
+    .then((postData) => {
+      if (!postData) {
+        res.status(404).json({ message: "No post found with this id" });
+        return;
+      }
+      res.json(postData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// Route to create a new post
+router.post("/", withAuth, (req, res) => {
+  Post.create({
+    title: req.body.title,
+    content: req.body.content,
+    user_id: req.session.user_id,
+  })
+    .then((postData) => res.json(postData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// Route to update post by ID
+router.put("/:id", withAuth, (req, res) => {
+  Post.update(
+    {
+      title: req.body.title,
+      content: req.body.content,
+    },
+    {
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
       },
-    });
-
-    // Handle case where no project is found with the specified id and user_id
-    if (!projectData) {
-      res.status(404).json({ message: 'No project found with this id!' });
-      return;
     }
-
-    // Respond with a 200 status and the deleted project data
-    res.status(200).json(projectData);
-  } catch (err) {
-    // Respond with a 500 status and the error if something goes wrong
-    res.status(500).json(err);
-  }
+  )
+    .then((postData) => {
+      if (!postData) {
+        res.status(404).json({ message: "No post found with this id" });
+        return;
+      }
+      res.json(postData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
-// Export the configured router for use in other parts of the application
+// Route to delete post by ID
+router.delete("/:id", withAuth, (req, res) => {
+  Post.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((postData) => {
+      if (!postData) {
+        res.status(404).json({ message: "No post found with this id" });
+        return;
+      }
+      res.json(postData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// Exporting the router
 module.exports = router;
