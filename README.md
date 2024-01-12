@@ -2,7 +2,7 @@
 A CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well.
 
 ## Purpose
-Build an CMS-style blog site similar to WordPress that adheres to the MVC paradigm. Handlebars.js will be used for templating, Sequelize for ORM, and express-session for authentication. The goal is to enable developers to publish blog posts and comment on each other's posts. The site will be deployed on Render. 
+Build an CMS-style blog site similar to WordPress that adheres to the MVC paradigm. Handlebars.js will be used for templating, Sequelize for ORM, and express-session npm package for authentication. The goal is to enable developers to publish blog posts and comment on each other's posts. The site will be deployed on Render. 
 
 ## Deployed Webpage Link
 <!-- https://jabrams513.github.io/five-day-weather-forecast/ -->
