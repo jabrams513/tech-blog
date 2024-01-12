@@ -2,8 +2,10 @@ const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
 const router = require("express").Router();
 
+// Route to render the homepage with all posts and associated comments and users
 router.get("/", async (req, res) => {
   try {
+    // Fetch all posts with associated comments and users
     const postData = await Post.findAll({
       attributes: ["id", "title", "content", "created_date"],
       include: [
@@ -22,7 +24,10 @@ router.get("/", async (req, res) => {
       ]
     });
 
+    // Map and format the post data for rendering
     const posts = postData.map((post) => post.get({ plain: true }));
+    
+    // Render the homepage view with the posts data
     res.render("../views/partials/homepage", { posts, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.error(err);
@@ -30,6 +35,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Route to render the login page or redirect to the homepage if already logged in
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
@@ -38,12 +44,15 @@ router.get("/login", (req, res) => {
   }
 });
 
+// Route to render the sign-up page
 router.get("/signUp", (req, res) => {
   res.render("signUp");
 });
 
+// Route to render a single post with its associated comments and user
 router.get("/post/:id", async (req, res) => {
   try {
+    // Fetch a specific post with associated comments and user
     const postData = await Post.findOne({
       where: {
         id: req.params.id,
@@ -65,13 +74,16 @@ router.get("/post/:id", async (req, res) => {
       ]
     });
 
+    // Handle case where no post is found with the specified id
     if (!postData) {
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
 
+    // Format the post data for rendering
     const post = postData.get({ plain: true });
-    console.log(post);
+
+    // Render the single post view with the post data
     res.render("singlePost", { post, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.error(err);
@@ -79,4 +91,5 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
+// Export the configured router for use in other parts of the application
 module.exports = router;
