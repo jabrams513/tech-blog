@@ -1,6 +1,7 @@
 // Asynchronous function for handling user logout
-async function logout() {
+async function logout(event) {
   try {
+    event.preventDefault()
     // Send a POST request to the server to log out the user
     const response = await fetch("/api/users/logout", {
       method: "POST",
