@@ -22,7 +22,7 @@ const hbs = exphbs.create({ helpers });
 const sess = {
   secret: 'Super secret secret',  // Secret used to sign the session ID cookie
   cookie: {
-    maxAge: 300000,     // Maximum age of the session cookie in milliseconds
+    maxAge: 600000,     // Maximum age of the session cookie in milliseconds
     httpOnly: true,     // Ensures that the cookie is only accessible by the web server
     secure: false,      // If true, the cookie will only be sent over HTTPS
     sameSite: 'strict', // Restricts the cookie to be sent only to the same site as the request
