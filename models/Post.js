@@ -34,9 +34,9 @@ Post.init(
     },
     // Date when the post was created, defaulting to the current date
     created_date: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
+      defaultValue: new Date(),
     },
   },
   {
