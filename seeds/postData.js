@@ -1,5 +1,6 @@
 const { Post } = require("../models");
 
+// Sample data for seeding posts
 const postData = [
     {
         title: "Post 1",
@@ -23,11 +24,14 @@ const postData = [
     }
 ];
 
+// Function to seed posts into the database
 const seedPosts = async () => {
     try {
+        // Using Sequelize's bulkCreate to insert multiple posts at once
         await Post.bulkCreate(postData);
         console.log('Posts seeded successfully');
     } catch (error) {
+        // Handling errors that may occur during the seeding process
         console.error('Error seeding posts:', error);
     }
 };

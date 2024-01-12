@@ -1,5 +1,6 @@
 const { Comment } = require('../models');
 
+// Sample data for seeding comments
 const commentData = [
     {
         comment_text: "Comment 1 comment 1",
@@ -23,11 +24,14 @@ const commentData = [
     }
 ];
 
+// Function to seed comments into the database
 const seedComments = async () => {
     try {
+        // Using Sequelize's bulkCreate to insert multiple comments at once
         await Comment.bulkCreate(commentData);
         console.log('Comments seeded successfully');
     } catch (error) {
+        // Handling errors that may occur during the seeding process
         console.error('Error seeding comments:', error);
     }
 };
