@@ -5,7 +5,7 @@ A CMS-style blog site similar to a Wordpress site, where developers can publish 
 Build an CMS-style blog site similar to WordPress that adheres to the MVC paradigm. Handlebars.js will be used for templating, Sequelize for ORM, and express-session npm package for authentication. The goal is to enable developers to publish blog posts and comment on each other's posts. The site will be deployed on Render. 
 
 ## Deployed Webpage Link
-<!-- https://jabrams513.github.io/five-day-weather-forecast/ -->
+https://techno-blog-febc3bdd0c0b.herokuapp.com/
 
 ## User Story
 
@@ -83,17 +83,29 @@ WHEN I am idle on the site for more than a set time
 
 THEN I am able to view posts and comments but I am prompted to log in again before I can add, update, or delete posts
 
-## Usage
-<!-- To ensure the application will work make sure to run "npm install" and "node index.js" in your CLI -->
+## Usage & Installation
+The website is free to use at this link: https://techno-blog-febc3bdd0c0b.herokuapp.com/
+
+For local use follow these instructions for installation:
+- Clone the tech-blog repository
+- Make sure you have node.js
+- Run the following command to install necessary dependencies:
+>    `npm i`
 
 ## Screenshot
-<!-- Please refer to the following video link(s) as a reference for the application's appearance and functionality:
+Please refer to the following screenshot(s) as a reference for the application's appearance and functionality:
 
-[CLI Employee Tracker Demo Video](https://drive.google.com/file/d/1ZaS6WP8qO6Zh8Nx5PSOwkgYoq1jmaP4b/view) <br/> -->
+[Add Post](./public/images/AddPost.png) <br/>
+[Comment](./public/images/Comment.png) <br/>
+[Dashboard](./public/images/Dashboard.png) <br/>
+[Edit Post](./public/images/EditPost.png) <br/>
+[Homepage](./public/images/Homepage.png) <br/>
+[Login](./public/images/Login.png) <br/>
+[Sign Up](./public/images/SignUp.png) <br/>
 
 ## Code Sources and Collaborators
-I had the opportunity to collaborate with my peers Kenny and Mustapha. We checked our work with one another.
+I had the opportunity to collaborate with my peers Kenny, Mustapha, and Phil. We checked our work with one another.
 
-In addition, I received feedback from my instructor, Diego, my TA, Andrew, my tutor, Corey, askBCS, as well as some help with commenting using AI tools.
+In addition, I received feedback from my instructor, Diego, my TA, Andrew, my tutor, Corey, askBCS, as well as some help with commenting and seeding using AI tools.
 
 All code used was self-generated or otherwise gathered from class materials.
