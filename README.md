@@ -95,13 +95,27 @@ For local use follow these instructions for installation:
 ## Screenshot
 Please refer to the following screenshot(s) as a reference for the application's appearance and functionality:
 
-[Add Post](./public/images/AddPost.png) <br/>
-[Comment](./public/images/Comment.png) <br/>
-[Dashboard](./public/images/Dashboard.png) <br/>
-[Edit Post](./public/images/EditPost.png) <br/>
-[Homepage](./public/images/Homepage.png) <br/>
-[Login](./public/images/Login.png) <br/>
-[Sign Up](./public/images/SignUp.png) <br/>
+
+Homepage<br/>
+![Homepage](./public/images/Homepage.png) <br/>
+
+Add Post<br/>
+![Add Post](./public/images/AddPost.png) <br/>
+
+Dashboard<br/>
+![Dashboard](./public/images/Dashboard.png) <br/>
+
+Comment<br/>
+![Comment](./public/images/Comment.png) <br/>
+
+Edit Post<br/>
+![Edit Post](./public/images/EditPost.png) <br/>
+
+Login<br/>
+![Login](./public/images/Login.png) <br/>
+
+Sign Up<br/>
+![Sign Up](./public/images/SignUp.png) <br/>
 
 ## Code Sources and Collaborators
 I had the opportunity to collaborate with my peers Kenny, Mustapha, and Phil. We checked our work with one another.
